@@ -1,0 +1,36 @@
+# get tts
+POST https://api.fpt.ai/hmi/tts/ftel-scc
+api_key: Hbw1kkpDhTzzsjMCADCCX0HZ7fkSTEJh
+speed: 0.5
+voice: linhsanace
+content-type: text/plain
+
+Cuộc gọi của quý khách có giá cước viễn thông là 100 đồng 1 phút. nếu gọi vào từ số thuê bao cố định. và 1000 đồng 1 phút. Nếu gọi vào từ số thuê bao di động
+
+# get greet-audio
+POST localhost:{{APP_PORT}}/api/v1/greet-audio
+Content-Type: application/json
+api-key: {{APP_API_KEY}}
+
+{
+   "CallerID": "0934234564"
+}
+
+# list ignore causes
+GET localhost:{{APP_PORT}}/api/v1/ignore-case
+Content-Type: application/json
+api-key: {{APP_API_KEY}}
+
+# add ignore cause
+POST localhost:{{APP_PORT}}/api/v1/ignore-case
+Content-Type: application/json
+api-key: {{APP_API_KEY}}
+
+[{
+   "value": "sample text"
+}]
+
+# remove ignore cause
+DELETE localhost:{{APP_PORT}}/api/v1/ignore-case/f53dce88-a7dd-4e88-8647-9fab040ce323
+Content-Type: application/json
+api-key: {{APP_API_KEY}}

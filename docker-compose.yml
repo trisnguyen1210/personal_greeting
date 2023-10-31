@@ -1,0 +1,25 @@
+version: '2.1'
+
+services:
+   # redis:
+   #    image: redis:latest
+   #    container_name: smart-routing-redis
+   ssr:
+      image: ssr:latest
+      container_name: smart-routing-api
+      build:
+         context: .
+         dockerfile: Dockerfile
+         args:
+            - APP_PROXY=$APP_PROXY
+      ports:
+         - 4444:${APP_PORT}
+      restart: 'no'
+      volumes:
+         - ${SSR_BASE_PATH}/audio:/app/public/audio
+         - ${SSR_WHITELIST_PATH}:/app/upload/whitelist
+         - ${SSR_BLACKLIST_PATH}:/app/upload/blacklist
+         - ${SSR_BASE_PATH}/template-audio:/app/template-audio
+         - ${SSR_BASE_PATH}/logs:/app/logs
+      # depends_on:
+      #    - redis
